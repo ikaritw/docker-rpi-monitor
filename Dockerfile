@@ -1,8 +1,11 @@
+## https://github.com/michaelmiklis/docker-rpi-monitor
+## https://github.com/ikaritw/docker-rpi-monitor
 FROM resin/rpi-raspbian:latest
 
+#LABEL maintainer="Michael Miklis / <info@michaelmiklis.de>"
 LABEL maintainer="ikaritw / <ikaritw@gmail.com>"
 
-#RUN [ "echo 'cross-build-start'" ]
+#RUN [ "cross-build-start" ]
 
 ENV  DEBIAN_FRONTEND noninteractive
 
@@ -16,7 +19,7 @@ CMD bash -C '/run.sh';'bash'
 
 # Install RPI-Monitor form Xavier Berger's repository
 RUN apt-get -y update && \
-    apt-get install -y --no-install-recommends dirmngr apt-transport-https ca-certificates
+    apt-get install -y --no-install-recommends dirmngr apt-transport-https ca-certificates apt-utils
 
 #RUN apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 2C0D3C0F && \
 RUN echo deb http://giteduberger.fr rpimonitor/ > /etc/apt/sources.list.d/rpimonitor.list && \
@@ -35,4 +38,4 @@ RUN sed -i 's/\/sys\//\/dockerhost\/sys\//g' /etc/rpimonitor/template/* && \
     sed -i 's/\#dynamic/dynamic/g' /etc/rpimonitor/template/network.conf && \
     sed -i 's/\#web.statistics/web.statistics/g' /etc/rpimonitor/template/network.conf
 
-#RUN [ "echo 'cross-build-end'" ]
+#RUN [ "cross-build-end" ]
