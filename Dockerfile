@@ -38,11 +38,7 @@ RUN sed -i 's/\/sys\//\/dockerhost\/sys\//g' /etc/rpimonitor/template/* && \
     sed -i 's/\#dynamic/dynamic/g' /etc/rpimonitor/template/network.conf && \
     sed -i 's/\#web.statistics/web.statistics/g' /etc/rpimonitor/template/network.conf
 
-<<<<<<< HEAD
 LABEL version="RPI-Monitor:2.12"
 
-#RUN [ "echo 'cross-build-end'" ]
-
-=======
 #RUN [ "cross-build-end" ]
->>>>>>> 1df4aac553c40a7d74ee06a2e8a60077529fa95e
+
