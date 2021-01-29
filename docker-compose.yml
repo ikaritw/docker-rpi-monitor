@@ -4,12 +4,14 @@ services:
     image: ikaritw/rpi-monitor:2.13
     container_name: rpi-monitor
     volumes:
+      - /etc/localtime:/etc/localtime:ro
       - /opt/vc:/opt/vc
       - /boot:/boot
       - /sys:/dockerhost/sys:ro
       - /etc:/dockerhost/etc:ro
       - /proc:/dockerhost/proc:ro
       - /usr/lib:/dockerhost/usr/lib:ro
+      - ./stat:/var/lib/rpimonitor/stat
     devices:
       - "/dev/vchiq:/dev/vchiq"
       - "/dev/vcsm:/dev/vcsm"
