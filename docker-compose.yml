@@ -11,7 +11,7 @@ services:
       - /etc:/dockerhost/etc:ro
       - /proc:/dockerhost/proc:ro
       - /usr/lib:/dockerhost/usr/lib:ro
-      - ./stat:/var/lib/rpimonitor/stat
+      - ./stat:/var/lib/rpimonitor/stat:rw
     devices:
       - "/dev/vchiq:/dev/vchiq"
       - "/dev/vcsm:/dev/vcsm"

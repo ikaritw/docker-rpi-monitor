@@ -21,8 +21,14 @@ ln -s /opt/vc/bin/dtoverlay /usr/bin/dtoverlay
 ln -s /opt/vc/bin/dtparam /usr/bin/dtparam
 
 # Insert Docker Host hostname into raspbian.conf
+RASPBIAN=/etc/rpimonitor/template/raspbian.conf
 DOCKERHOST=$(cat /dockerhost/etc/hostname)
-sed -i "s/'+data.hostname+'/$DOCKERHOST/g" /etc/rpimonitor/template/raspbian.conf
+if grep "web.page.menutitle" $RASPBIAN; then
+  sed -i "s/'+data.hostname+'/$DOCKERHOST/g" $RASPBIAN
+else
+  echo "web.page.menutitle='RPi-Monitor <sub>($DOCKERHOST)</sub>'" >> $RASPBIAN
+  echo "web.page.pagetitle='RPi-Monitor ($DOCKERHOST)'" >> $RASPBIAN
+fi
 
 # Update RPI Monitor Package Status
 /etc/init.d/rpimonitor install_auto_package_status_update
